@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 def calcular_costo_regulares(tamales: list[int], costo_unitario:int) -> int:
     """
-    Esta funcion se usa para calcular el costo de los tamales 'normales' (entiendase por normales los tamales de hoja de maiz)
+    Esta funcion se usa para calcular el costo de los tamales
 
     Argumentos:
     tamales: lista de numeros enteros correspondiente a la cantidad de tamales vendidos por dia
