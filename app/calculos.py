@@ -46,7 +46,7 @@ def calcular_costo_tamales(tamales: list[int], costo_unitario:int) -> int:
 
     return costo_final
 
-def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]) -> int:
+def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]| None = None) -> int:
     """
     Esta funcion tiene como proposito calcular la ganancia de vender los 2 tipos de tamales a la semana
 
@@ -58,12 +58,13 @@ def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]) ->
     fecha de escribir este codigo (Octubre 19, 2026) tienen una ganancia de 9 pesos, esta lista puede
     llegar a ser vacio. por lo que se le asigna un valor por defecto
 
-    Retorna: valor flotante resultado de tomar el numero de total de tamales y multiplicarlos
+    Retorna: valor entero resultado de tomar el numero de total de tamales y multiplicarlos
     por su ganancia
 
     Errores:
-    ValueError: en caso de que alguna de las listas de tamales este vacia o sea nula, se envia este error
-    TypeError: en caso de que alguno de los elementos de las listas sea algo invalido se encia este error
+    ValueError: en caso de que alguna de que en las listas haya un valor negativo,
+    se envia este error
+    TypeError: en caso de que alguno de los elementos de las listas sea algo invalido se envia este error
     """
     if not tamales_regulares:
         raise ValueError("La lista de tamales esta vacia")
@@ -76,12 +77,11 @@ def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]) ->
         if tamales_reg <0:
             raise ValueError(f"La cantidad no puede ser negativa: {tamales_reg}")
 
-    if hoja_platano:
-        for tamales_platano in hoja_platano:
-            if not isinstance(tamales_platano,int) or isinstance(tamales_platano, bool):
-                raise TypeError(f"{tamales_platano} es un numero invalido")
-            if tamales_platano <0:
-                raise ValueError(f"La cantidad no puede ser negativa: {tamales_platano}")
+    for tamales_platano in hoja_platano:
+        if not isinstance(tamales_platano,int) or isinstance(tamales_platano, bool):
+            raise TypeError(f"{tamales_platano} es un numero invalido")
+        if tamales_platano <0:
+            raise ValueError(f"La cantidad no puede ser negativa: {tamales_platano}")
 
     ganancia_t_regulares = 5
     ganancia_t_platano = 9
