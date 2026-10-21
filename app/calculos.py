@@ -2,6 +2,12 @@
 import logging
 
 logger = logging.getLogger(__name__)
+def validar_lista(lista:list[int]):
+    for valor in lista:
+        if not isinstance(valor,int) or isinstance(valor, bool):
+            raise TypeError(f"{valor} es un numero invalido")
+        if valor < 0:
+            raise ValueError(f"No puede haber numeros negativos {valor}")
 
 def calcular_costo_tamales(tamales: list[int], costo_unitario:int) -> int:
     """
@@ -34,12 +40,8 @@ def calcular_costo_tamales(tamales: list[int], costo_unitario:int) -> int:
         raise TypeError(f"{costo_unitario} es un numero invalido")
     if costo_unitario <= 0:
         raise ValueError(f"El costo unitario no puede ser negativo: {costo_unitario}")
-        
-    for numero_tamales in tamales:
-        if not isinstance(numero_tamales,int) or isinstance(numero_tamales, bool):
-            raise TypeError(f"{numero_tamales} es un numero invalido")
-        if numero_tamales <0:
-            raise ValueError(f"La cantidad no puede ser negativa: {numero_tamales}")
+
+    validar_lista(tamales)
 
     sumatoria_tamales = sum(tamales)
     costo_final = sumatoria_tamales * costo_unitario
@@ -71,17 +73,8 @@ def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]| No
     if not hoja_platano:
         hoja_platano = [0,0,0,0,0]
 
-    for tamales_reg in tamales_regulares:
-        if not isinstance(tamales_reg,int) or isinstance(tamales_reg, bool):
-            raise TypeError(f"{tamales_reg} es un numero invalido")
-        if tamales_reg <0:
-            raise ValueError(f"La cantidad no puede ser negativa: {tamales_reg}")
-
-    for tamales_platano in hoja_platano:
-        if not isinstance(tamales_platano,int) or isinstance(tamales_platano, bool):
-            raise TypeError(f"{tamales_platano} es un numero invalido")
-        if tamales_platano <0:
-            raise ValueError(f"La cantidad no puede ser negativa: {tamales_platano}")
+    validar_lista(tamales_regulares)
+    validar_lista(hoja_platano)
 
     ganancia_t_regulares = 5
     ganancia_t_platano = 9
