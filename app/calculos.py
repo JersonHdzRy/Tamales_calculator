@@ -9,7 +9,7 @@ def validar_lista(lista:list[int]):
         if valor < 0:
             raise ValueError(f"No puede haber numeros negativos {valor}")
 
-def calcular_costo_tamales(tamales: list[int], costo_unitario:int) -> int:
+def calcular_costo_tamales(tamales: list[int], costo_unitario:float) -> float:
     """
     Esta funcion se usa para calcular el costo de los tamales
 
@@ -36,7 +36,7 @@ def calcular_costo_tamales(tamales: list[int], costo_unitario:int) -> int:
     logger.debug("La lista de tamales si tiene datos")
     logger.debug("Lista de tamales: %s", tamales)
 
-    if not isinstance(costo_unitario,int) or isinstance(costo_unitario, bool):
+    if not (isinstance(costo_unitario,float) or isinstance(costo_unitario,int)) or isinstance(costo_unitario, bool):
         raise TypeError(f"{costo_unitario} es un numero invalido")
     if costo_unitario <= 0:
         raise ValueError(f"El costo unitario no puede ser negativo: {costo_unitario}")
@@ -76,8 +76,8 @@ def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]| No
     validar_lista(tamales_regulares)
     validar_lista(hoja_platano)
 
-    ganancia_t_regulares = 5
-    ganancia_t_platano = 9
+    ganancia_t_regulares = 5.0
+    ganancia_t_platano = 9.0
 
     total_regulares = sum(tamales_regulares) * ganancia_t_regulares
     total_platano = sum(hoja_platano) * ganancia_t_platano
