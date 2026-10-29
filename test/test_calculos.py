@@ -1,6 +1,7 @@
 # test/test_calculos.py
 import pytest
-from app.calculos import calcular_costo_tamales
+from app.calculos import calcular_costo_tamales, calcular_ganancias
+from fastapi.testclient import TestClient
 
 def test_costo_con_datos_validos():
     tamales = [3, 4, 6, 7]
@@ -79,3 +80,49 @@ def test_tamales_full_None():
 
     with pytest.raises(TypeError):
             calcular_costo_tamales(tamales, costo_unitario)
+
+def test_precio_unitario_decimal():
+    tamales = [None,None,None,None,None]
+    costo_unitario = 12.5
+
+    with pytest.raises(TypeError):
+            calcular_costo_tamales(tamales, costo_unitario)
+
+def test_ganancia_dato_negativo_regulares():
+    tamales = [100,200,300,-400,500]
+    tamales_platano = [100,200,300,400,500]
+
+    with pytest.raises(ValueError):
+            calcular_ganancias(tamales, tamales_platano)
+
+def test_ganancia_dato_negativo_platano():
+    tamales = [100,200,300,400,500]
+    tamales_platano = [100,-200,300,400,500]
+
+
+    with pytest.raises(ValueError):
+            calcular_ganancias(tamales, tamales_platano)
+
+def test_ganancia_None_regulares():
+    tamales = [100,200,None,400,500]
+    tamales_platano = [100,200,300,400,500]
+
+
+    with pytest.raises(TypeError):
+            calcular_ganancias(tamales, tamales_platano)
+
+def test_ganancia_None_platano():
+    tamales = [100,200,300,400,500]
+    tamales_platano = [100,200,300,None,500]
+
+
+    with pytest.raises(TypeError):
+            calcular_ganancias(tamales, tamales_platano)
+
+def test_ganancia_dato_string():
+    tamales = [100,200,300,"400",500]
+    tamales_platano = [100,200,300,400,500]
+
+
+    with pytest.raises(TypeError):
+            calcular_ganancias(tamales, tamales_platano)

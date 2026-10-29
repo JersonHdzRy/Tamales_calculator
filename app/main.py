@@ -7,8 +7,8 @@ app = FastAPI()
 
 class DatosSemanales(BaseModel):
     usuario: str
-    precio_tamal: int = Field(gt=0)
-    precio_tamal_platano: int = Field(gt=0)
+    precio_tamal: float = Field(gt=0)
+    precio_tamal_platano: float = Field(gt=0)
     tamales: list[int]
     tamales_platano: list[int]
 

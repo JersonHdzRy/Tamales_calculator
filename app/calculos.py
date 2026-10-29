@@ -76,8 +76,8 @@ def calcular_ganancias(tamales_regulares: list[int], hoja_platano: list[int]| No
     validar_lista(tamales_regulares)
     validar_lista(hoja_platano)
 
-    ganancia_t_regulares = 5.0
-    ganancia_t_platano = 9.0
+    ganancia_t_regulares:float = 5.0
+    ganancia_t_platano:float = 9.0
 
     total_regulares = sum(tamales_regulares) * ganancia_t_regulares
     total_platano = sum(hoja_platano) * ganancia_t_platano
